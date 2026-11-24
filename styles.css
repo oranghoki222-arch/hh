@@ -1,0 +1,31 @@
+Html,body{margin:0;height:100%;background:#000;overflow:hidden;touch
+-action:none;color:#ffe600;
+Font-family:’Press Start 2P’,ui-monospace,monospace}
+#app{display:flex;flex-direction:column;align-
+items:center;height:100%;padding:6px;box-sizing:border-box}
+#hud{width:100%;max-width:560px;display:flex;justify-content:space-
+between;align-items:flex-start;height:78px;font-size:12px}
+.row{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.ic{image-rendering:pixelated;display:block}
+#hud .c{text-align:center}
+#score{font-size:30px;text-shadow:3px 3px 0 #8a6d00}
+#mult{font-size:11px;margin-top:6px}
+#hud .r{display:flex;flex-direction:column;align-items:flex-end}
+.btns{display:flex}
+Button{background:#000;color:#ffe600;border:2px solid #ffe600;font-
+family:inherit;font-size:11px;padding:6px 8px;margin:0
+2px;display:flex;align-items:center;justify-content:center}
+Button:active{background:#ffe600;color:#000}
+#lv{margin-top:8px;font-size:10px;gap:6px}
+Canvas#c{image-rendering:pixelated;image-rendering:crisp-
+edges;display:block}
+.ov{position:fixed;inset:0;background:rgba(0,0,0,.88);display:none;align-
+items:center;justify-content:center;z-index:5}
+.box{text-align:center}#ovt{font-size:20px;margin-bottom:14px}
+.box>button{display:block;margin:10px
+auto;width:230px;padding:13px;font-size:12px}
+#grid{display:grid;grid-template-columns:repeat(8,1fr);gap:4px;max-
+height:62vh;overflow:auto;margin:12px
+auto;width:min(92vw,420px);touch-action:pan-y}
+#grid button{margin:0;padding:9px 0;font-size:9px;display:block}
+#grid .cur{background:#ffe600;color:#000}
