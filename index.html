@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="id"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,user-
+scalable=no">
+<title>Tomb Mask 100</title>
+<link href="https://fonts.googleapis.com/css2?
+family=Press+Start+2P&display=swap" rel="stylesheet">
+<style>
+html,body{margin:0;height:100%;background:#000;overflow:hidden;touch-
+action:none;color:#ffe600;
+font-family:'Press Start 2P',ui-monospace,monospace}
+#app{display:flex;flex-direction:column;align-
+items:center;height:100%;padding:6px;box-sizing:border-
+box;background:#000}
+#hud{width:100%;max-width:560px;display:flex;justify-content:space-
+between;align-items:flex-start;flex-shrink:0;padding-bottom:14px;font-
+size:12px}
+.row{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.ic{image-rendering:pixelated;display:block}
+#hud .c{text-align:center}
+#score{font-size:30px;text-shadow:3px 3px 0 #8a6d00}
+#mult{font-size:11px;margin-top:6px}
+#playerName{font-size:8px;margin-top:6px;max-
+width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#nameBox{width:min(88vw,360px);margin:12px auto;font-size:9px;line-
+height:1.6}
+#nameInput{background:#000;color:#ffe600;border:2px solid #ffe600;font-
+family:inherit;font-size:10px;padding:10px;box-sizing:border-
+box;width:100%;margin:6px 0}
+#nameSave{width:100%;margin:4px 0}
+#hud .r{display:flex;flex-direction:column;align-items:flex-end}
+.btns{display:flex}
+button{background:#000;color:#ffe600;border:2px solid #ffe600;font-
+family:inherit;font-size:11px;padding:6px 8px;margin:0
+2px;display:flex;align-items:center;justify-content:center}
+button:active{background:#ffe600;color:#000}
+#lv{margin-top:8px;font-size:10px;gap:6px}
+#shopBtn{font-size:9px;padding:5px 7px;margin:0}
+canvas#c{image-rendering:pixelated;image-rendering:crisp-
+edges;display:block;flex-shrink:0}
+.ov{position:fixed;inset:0;background:rgba(0,0,0,.92);display:none;alig
+n-items:center;justify-content:center;z-index:5}
+.box{text-align:center;max-width:94vw}#ovt{font-size:20px;margin-
+bottom:14px}
+.box>button{display:block;margin:10px
+auto;width:230px;padding:13px;font-size:12px}
+#grid{display:grid;grid-template-columns:repeat(8,1fr);gap:4px;max-
+height:36vh;overflow:auto;margin:12px auto;width:min(92vw,420px);touch-
+action:pan-y}
+#grid button{margin:0;padding:9px 0;font-size:9px;display:block}
+#grid .cur{background:#ffe600;color:#000} #codebox{font-size:9px;line-height:1.6;margin:8px
+auto;width:min(92vw,420px)}
+#mycode{display:block;word-break:break-
+all;background:#1a1500;border:2px dashed #ffe600;padding:8px;margin:6px
+0;user-select:all;-webkit-user-select:all}
+#codein{background:#000;color:#ffe600;border:2px solid #ffe600;font-
+family:inherit;font-size:10px;padding:10px;width:calc(100% - 24px);box-
+sizing:border-box;margin:6px 0}
+#codebox button{width:100%;margin:4px 0}
+#codemsg{min-height:14px}
+#shopItems{display:grid;gap:8px;width:min(88vw,360px);margin:14px auto}
+#shopItems button{margin:0;width:100%;min-height:48px;font-
+size:9px;line-height:1.5}
+#shopMsg{min-height:28px;font-size:9px;line-height:1.6;margin:8px}
+</style>
+</head><body>
+<div id="app">
+<div id="hud">
+ <div class="l">
+ <div class="row"><canvas class="ic" id="icCoin" width="10"
+height="10"></canvas><span id="coins">0</span></div>
+ <div class="row"><canvas class="ic" id="icDeath" width="10"
+height="9"></canvas><span id="deaths">0</span></div>
+ <div class="row"><span id="shieldCount">S:0</span><button
+id="shopBtn">TOKO</button></div>
+ </div>
+ <div class="c"><div id="score">0</div><div id="mult">x1</div><div
+id="playerName">MASK</div></div>
+ <div class="r">
+ <div class="btns">
+ <button id="soundBtn" aria-label="Matikan suara">♪</button>
+ <button id="prev"><canvas class="ic" id="icPrev" width="4"
+height="7"></canvas></button>
+ <button id="rs"><canvas class="ic" id="icRs" width="8"
+height="8"></canvas></button>
+ </div>
+ <button id="lv"><canvas class="ic" id="icLv" width="12"
+height="10"></canvas><span id="lvt"></span></button>
+ </div>
+</div>
+<canvas id="c"></canvas>
+</div>
+<div id="welcome" class="ov"><div class="box"><div id="ovt">WELCOME!</
+div><div style="font-size:12px;margin:12px 0 18px">TOMB MASK 100</
+div><button id="startBtn">START</button><button
+id="welcomeLevels">SELECT LEVEL</button></div></div>
+<div id="ov" class="ov"><div class="box"><div id="ovt"></div><button
+id="oRe">ULANG</button><button id="oMn">PILIH LEVEL</button></div></
+div>
+<div id="menu" class="ov"><div class="box">
+<div>PILIH LEVEL</div>
+<div id="grid"></div>
+<div id="codebox">
+ <div>KODE LANJUT (simpan ya):</div> <span id="mycode"></span>
+ <input id="codein" placeholder="tempel kode di sini"
+autocomplete="off">
+ <button id="codego">PAKAI KODE</button>
+ <div id="codemsg"></div>
+</div>
+<button id="mClose">TUTUP</button>
+</div></div>
+<div id="shop" class="ov"><div class="box">
+<div>TOKO</div><div id="shopBalance"></div>
+<div id="nameBox">NAMA KARAKTER
+ <input id="nameInput" maxlength="16" placeholder="Nama karakter"
+autocomplete="off">
+ <button id="nameSave">SIMPAN NAMA</button>
+</div>
+<div id="shopItems"></div><div id="shopMsg"></div>
+<button id="shopClose">TUTUP</button>
+</div></div>
+<script src="script.js"></script>
+</body></html>
